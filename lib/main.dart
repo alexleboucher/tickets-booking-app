@@ -31,11 +31,18 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MyAppState extends ChangeNotifier {
-  var currentTabIndex = 0;
+enum MainTab {
+  home,
+  search,
+  tickets,
+  profile,
+}
 
-  void setCurrentTabIndex(int index) {
-    currentTabIndex = index;
+class MyAppState extends ChangeNotifier {
+  MainTab currentTab = MainTab.home;
+
+  void setCurrentTab(MainTab tab) {
+    currentTab = tab;
     notifyListeners();
   }
 }
@@ -48,17 +55,17 @@ class MainScreen extends StatelessWidget {
     final appState = context.watch<MyAppState>();
 
     Widget screen;
-    switch (appState.currentTabIndex) {
-      case 0:
+    switch (appState.currentTab) {
+      case MainTab.home:
         screen = const HomeScreen();
         break;
-      case 1:
+      case MainTab.search:
         screen = const SearchScreen();
         break;
-      case 2:
+      case MainTab.tickets:
         screen = const TicketsScreen();
         break;
-      case 3:
+      case MainTab.profile:
         screen = const ProfileScreen();
         break;
       default:

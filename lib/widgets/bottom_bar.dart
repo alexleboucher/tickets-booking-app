@@ -11,14 +11,14 @@ class BottomBar extends StatelessWidget {
     final appState = context.watch<MyAppState>();
 
     void onItemTapped(int index) {
-      appState.setCurrentTabIndex(index);
+      appState.setCurrentTab(MainTab.values[index]);
     }
 
     return BottomNavigationBar(
       type: BottomNavigationBarType.fixed,
       showSelectedLabels: false,
       showUnselectedLabels: false,
-      currentIndex: appState.currentTabIndex,
+      currentIndex: appState.currentTab.index,
       onTap: (value) => onItemTapped(value),
       items: const [
         BottomNavigationBarItem(
