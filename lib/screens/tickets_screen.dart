@@ -7,7 +7,6 @@ class TicketsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const AppScaffold(
-      title: 'Tickets',
       child: Center(
         child: Text('Tickets'),
       ),

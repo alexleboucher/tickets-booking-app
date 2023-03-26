@@ -4,6 +4,7 @@ import 'package:tickets_booking_app/screens/home_screen.dart';
 import 'package:tickets_booking_app/screens/profile_screen.dart';
 import 'package:tickets_booking_app/screens/search_screen.dart';
 import 'package:tickets_booking_app/screens/tickets_screen.dart';
+import 'package:tickets_booking_app/utils/colors.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,10 +20,13 @@ class MyApp extends StatelessWidget {
         child: MaterialApp(
           title: 'Flutter Demo',
           theme: ThemeData(
-            colorSchemeSeed: Colors.lightBlueAccent,
             useMaterial3: true,
+            colorScheme: ColorScheme.fromSeed(
+              seedColor: Colors.blue,
+              background: backgroundColor,
+            ),
           ),
-          home: const App(),
+          home: const MainScreen(),
         ));
   }
 }
@@ -36,8 +40,8 @@ class MyAppState extends ChangeNotifier {
   }
 }
 
-class App extends StatelessWidget {
-  const App({super.key});
+class MainScreen extends StatelessWidget {
+  const MainScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
