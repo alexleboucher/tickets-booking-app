@@ -1,14 +1,19 @@
 import 'package:fluentui_icons/fluentui_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:provider/provider.dart';
+import 'package:tickets_booking_app/main.dart';
 import 'package:tickets_booking_app/widgets/app_scaffold.dart';
 import 'package:tickets_booking_app/widgets/text.dart';
+import 'package:tickets_booking_app/widgets/view_all_title.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final appState = context.watch<MyAppState>();
+
     return AppScaffold(
       child: ListView(
         children: [
@@ -16,7 +21,7 @@ class HomeScreen extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Column(
               children: [
-                const Gap(40),
+                const Gap(50),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -74,12 +79,19 @@ class HomeScreen extends StatelessWidget {
                       hintText: 'Search',
                       hintStyle: TextStyle(color: Colors.grey.shade500),
                       border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20),
+                        borderRadius: BorderRadius.circular(15),
                         borderSide: BorderSide.none,
                       ),
                     ),
                   ),
-                )
+                ),
+                const Gap(25),
+                ViewAllTitle(
+                  title: 'Upcoming Flights',
+                  onViewAllTapped: () {
+                    appState.setCurrentTab(MainTab.tickets);
+                  },
+                ),
               ],
             ),
           ),
