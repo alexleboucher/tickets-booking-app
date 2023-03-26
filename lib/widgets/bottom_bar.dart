@@ -16,6 +16,8 @@ class BottomBar extends StatelessWidget {
 
     return BottomNavigationBar(
       type: BottomNavigationBarType.fixed,
+      showSelectedLabels: false,
+      showUnselectedLabels: false,
       currentIndex: appState.currentTabIndex,
       onTap: (value) => onItemTapped(value),
       items: const [
