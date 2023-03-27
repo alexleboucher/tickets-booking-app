@@ -4,10 +4,8 @@ import 'package:gap/gap.dart';
 import 'package:provider/provider.dart';
 import 'package:tickets_booking_app/main.dart';
 import 'package:tickets_booking_app/widgets/app_scaffold.dart';
-import 'package:tickets_booking_app/widgets/ui/text/headline_text.dart';
-import 'package:tickets_booking_app/widgets/ui/text/text_customization.dart';
-import 'package:tickets_booking_app/widgets/ui/text/title_text.dart';
-import 'package:tickets_booking_app/widgets/view_all_title.dart';
+import 'package:tickets_booking_app/widgets/home/home_header.dart';
+import 'package:tickets_booking_app/widgets/ui/view_all_title.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -24,38 +22,7 @@ class HomeScreen extends StatelessWidget {
             child: Column(
               children: [
                 const Gap(50),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        TitleText(
-                          'Good Morning',
-                          textStyle: TitleStyle.titleMedium,
-                          customization: TextCustomization(
-                            color: Colors.grey.shade500,
-                          ),
-                        ),
-                        const HeadlineText(
-                          'Fast Fly Tickets',
-                          textStyle: HeadlineStyle.headlineMedium,
-                        ),
-                      ],
-                    ),
-                    Container(
-                      height: 70,
-                      width: 70,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        image: const DecorationImage(
-                          fit: BoxFit.cover,
-                          image: AssetImage('assets/images/logo.png'),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+                const HomeHeader(),
                 const Gap(20),
                 GestureDetector(
                   onTap: () {
