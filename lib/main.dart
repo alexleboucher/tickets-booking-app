@@ -7,16 +7,16 @@ import 'package:tickets_booking_app/screens/tickets_screen.dart';
 import 'package:tickets_booking_app/utils/colors.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const App());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class App extends StatelessWidget {
+  const App({super.key});
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-        create: (context) => MyAppState(),
+        create: (context) => AppState(),
         child: MaterialApp(
           title: 'Flutter Demo',
           theme: ThemeData(
@@ -38,7 +38,7 @@ enum MainTab {
   profile,
 }
 
-class MyAppState extends ChangeNotifier {
+class AppState extends ChangeNotifier {
   MainTab currentTab = MainTab.home;
 
   void setCurrentTab(MainTab tab) {
@@ -52,7 +52,7 @@ class MainScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final appState = context.watch<MyAppState>();
+    final appState = context.watch<AppState>();
 
     Widget screen;
     switch (appState.currentTab) {

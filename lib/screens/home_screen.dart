@@ -4,7 +4,9 @@ import 'package:gap/gap.dart';
 import 'package:provider/provider.dart';
 import 'package:tickets_booking_app/main.dart';
 import 'package:tickets_booking_app/widgets/app_scaffold.dart';
-import 'package:tickets_booking_app/widgets/text.dart';
+import 'package:tickets_booking_app/widgets/ui/text/headline_text.dart';
+import 'package:tickets_booking_app/widgets/ui/text/text_customization.dart';
+import 'package:tickets_booking_app/widgets/ui/text/title_text.dart';
 import 'package:tickets_booking_app/widgets/view_all_title.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -12,7 +14,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final appState = context.watch<MyAppState>();
+    final appState = context.watch<AppState>();
 
     return AppScaffold(
       child: ListView(
@@ -28,16 +30,16 @@ class HomeScreen extends StatelessWidget {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        AppText(
+                        TitleText(
                           'Good Morning',
-                          textStyle: AppTextStyle.title5,
-                          customization: AppTextCustomization(
+                          textStyle: TitleStyle.titleMedium,
+                          customization: TextCustomization(
                             color: Colors.grey.shade500,
                           ),
                         ),
-                        const AppText(
+                        const HeadlineText(
                           'Fast Fly Tickets',
-                          textStyle: AppTextStyle.title2,
+                          textStyle: HeadlineStyle.headlineMedium,
                         ),
                       ],
                     ),

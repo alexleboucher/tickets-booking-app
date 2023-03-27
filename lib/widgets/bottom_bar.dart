@@ -8,7 +8,7 @@ class BottomBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final appState = context.watch<MyAppState>();
+    final appState = context.watch<AppState>();
 
     void onItemTapped(int index) {
       appState.setCurrentTab(MainTab.values[index]);

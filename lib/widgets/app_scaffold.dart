@@ -14,8 +14,10 @@ class AppScaffold extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: child,
+      body: SafeArea(
+        child: Center(
+          child: child,
+        ),
       ),
       bottomNavigationBar: showNavigationBar ? const BottomBar() : null,
     );

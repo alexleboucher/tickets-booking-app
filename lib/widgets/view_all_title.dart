@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:tickets_booking_app/widgets/text.dart';
+import 'package:tickets_booking_app/widgets/ui/text/headline_text.dart';
+import 'package:tickets_booking_app/widgets/ui/text/text_customization.dart';
+import 'package:tickets_booking_app/widgets/ui/text/title_text.dart';
 
 class ViewAllTitle extends StatelessWidget {
   const ViewAllTitle({
@@ -16,15 +18,13 @@ class ViewAllTitle extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        AppText(
-          title,
-          textStyle: AppTextStyle.title3,
-        ),
+        HeadlineText(title, textStyle: HeadlineStyle.headlineSmall),
         TextButton(
           onPressed: onViewAllTapped,
-          child: const AppText(
+          child: const TitleText(
             'View all',
-            customization: AppTextCustomization(
+            textStyle: TitleStyle.titleSmall,
+            customization: TextCustomization(
               color: Colors.blue,
             ),
           ),
