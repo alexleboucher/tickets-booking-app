@@ -64,12 +64,14 @@ class HomeScreen extends StatelessWidget {
                 const Gap(5),
                 Container(
                   margin: const EdgeInsets.only(left: 5),
-                  child: const TicketView(
+                  child: TicketView(
                     departureCode: 'NYC',
                     departureName: 'New-York',
                     arrivalCode: 'LDN',
                     arrivalName: 'London',
-                    flightDuration: Duration(hours: 8, minutes: 30),
+                    flightDuration: const Duration(hours: 8, minutes: 30),
+                    departureDate: DateTime(2023, 5, 23, 10, 20),
+                    ticketNumber: 23,
                   ),
                 ),
               ],
