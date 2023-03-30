@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
 
-getSize(BuildContext context) {
+Size getSize(BuildContext context) {
   return MediaQuery.of(context).size;
 }

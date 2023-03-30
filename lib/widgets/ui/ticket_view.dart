@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
 import 'package:tickets_booking_app/utils/duration.dart';
-import 'package:tickets_booking_app/utils/layout.dart';
 import 'package:tickets_booking_app/widgets/ui/text/text_customization.dart';
 import 'package:tickets_booking_app/widgets/ui/text/title_text.dart';
 
@@ -12,6 +11,7 @@ const bottomTicketColor = Color.fromARGB(255, 253, 143, 115);
 class TicketView extends StatelessWidget {
   const TicketView({
     super.key,
+    required this.width,
     required this.departureCode,
     required this.departureName,
     required this.arrivalCode,
@@ -21,6 +21,7 @@ class TicketView extends StatelessWidget {
     required this.ticketNumber,
   });
 
+  final double width;
   final String departureCode;
   final String arrivalCode;
   final String departureName;
@@ -31,10 +32,8 @@ class TicketView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = getSize(context);
-
     return SizedBox(
-      width: size.width,
+      width: width,
       child: Column(
         children: [
           Container(

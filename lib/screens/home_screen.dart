@@ -3,10 +3,33 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:provider/provider.dart';
 import 'package:tickets_booking_app/main.dart';
+import 'package:tickets_booking_app/models/ticket.dart';
+import 'package:tickets_booking_app/utils/layout.dart';
 import 'package:tickets_booking_app/widgets/app_scaffold.dart';
 import 'package:tickets_booking_app/widgets/home/home_header.dart';
 import 'package:tickets_booking_app/widgets/ui/ticket_view.dart';
 import 'package:tickets_booking_app/widgets/ui/view_all_title.dart';
+
+var tickets = [
+  Ticket(
+    departureCode: 'NYC',
+    departureName: 'New-York',
+    arrivalCode: 'LDN',
+    arrivalName: 'London',
+    flightDuration: const Duration(hours: 8, minutes: 30),
+    departureDate: DateTime(2023, 5, 23, 10, 20),
+    ticketNumber: 23,
+  ),
+  Ticket(
+    departureCode: 'LDN',
+    departureName: 'London',
+    arrivalCode: 'NYC',
+    arrivalName: 'New-York',
+    flightDuration: const Duration(hours: 8, minutes: 15),
+    departureDate: DateTime(2023, 5, 30, 14, 55),
+    ticketNumber: 23,
+  ),
+];
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -62,16 +85,27 @@ class HomeScreen extends StatelessWidget {
                   },
                 ),
                 const Gap(5),
-                Container(
-                  margin: const EdgeInsets.only(left: 5),
-                  child: TicketView(
-                    departureCode: 'NYC',
-                    departureName: 'New-York',
-                    arrivalCode: 'LDN',
-                    arrivalName: 'London',
-                    flightDuration: const Duration(hours: 8, minutes: 30),
-                    departureDate: DateTime(2023, 5, 23, 10, 20),
-                    ticketNumber: 23,
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children: [
+                      for (var i = 0; i < tickets.length; i++)
+                        Row(
+                          children: [
+                            TicketView(
+                              width: getSize(context).width * 0.8,
+                              departureCode: tickets[i].departureCode,
+                              departureName: tickets[i].departureName,
+                              arrivalCode: tickets[i].arrivalCode,
+                              arrivalName: tickets[i].arrivalName,
+                              flightDuration: tickets[i].flightDuration,
+                              departureDate: tickets[i].departureDate,
+                              ticketNumber: tickets[i].ticketNumber,
+                            ),
+                            if (i < tickets.length - 1) const Gap(20)
+                          ],
+                        ),
+                    ],
                   ),
                 ),
               ],
