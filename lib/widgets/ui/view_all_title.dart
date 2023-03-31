@@ -15,21 +15,24 @@ class ViewAllTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        HeadlineText(title, textStyle: HeadlineStyle.headlineSmall),
-        TextButton(
-          onPressed: onViewAllTapped,
-          child: const TitleText(
-            'View all',
-            textStyle: TitleStyle.titleSmall,
-            customization: TextCustomization(
-              color: Colors.blue,
+    return Padding(
+      padding: const EdgeInsets.only(right: 10),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          HeadlineText(title, textStyle: HeadlineStyle.headlineSmall),
+          TextButton(
+            onPressed: onViewAllTapped,
+            child: const TitleText(
+              'View all',
+              textStyle: TitleStyle.titleSmall,
+              customization: TextCustomization(
+                color: Colors.blue,
+              ),
             ),
-          ),
-        )
-      ],
+          )
+        ],
+      ),
     );
   }
 }

@@ -7,6 +7,7 @@ import 'package:tickets_booking_app/models/ticket.dart';
 import 'package:tickets_booking_app/utils/layout.dart';
 import 'package:tickets_booking_app/widgets/app_scaffold.dart';
 import 'package:tickets_booking_app/widgets/home/home_header.dart';
+import 'package:tickets_booking_app/widgets/ui/hotel_card.dart';
 import 'package:tickets_booking_app/widgets/ui/ticket_view.dart';
 import 'package:tickets_booking_app/widgets/ui/view_all_title.dart';
 
@@ -42,37 +43,39 @@ class HomeScreen extends StatelessWidget {
       child: ListView(
         children: [
           Container(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
+            padding: const EdgeInsets.only(left: 20, top: 50, bottom: 20),
             child: Column(
               children: [
-                const Gap(50),
                 const HomeHeader(),
                 const Gap(20),
-                GestureDetector(
-                  onTap: () {
-                    FocusScopeNode currentFocus = FocusScope.of(context);
-                    if (!currentFocus.hasPrimaryFocus) {
-                      currentFocus.unfocus();
-                    }
-                  },
-                  child: TextFormField(
-                    onTapOutside: (event) {
+                Padding(
+                  padding: const EdgeInsets.only(right: 20),
+                  child: GestureDetector(
+                    onTap: () {
                       FocusScopeNode currentFocus = FocusScope.of(context);
                       if (!currentFocus.hasPrimaryFocus) {
                         currentFocus.unfocus();
                       }
                     },
-                    decoration: InputDecoration(
-                      filled: true,
-                      fillColor: Colors.white,
-                      prefixIconColor: Colors.grey.shade500,
-                      prefixIcon: const Icon(
-                          FluentSystemIcons.ic_fluent_search_regular),
-                      hintText: 'Search',
-                      hintStyle: TextStyle(color: Colors.grey.shade500),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(15),
-                        borderSide: BorderSide.none,
+                    child: TextFormField(
+                      onTapOutside: (event) {
+                        FocusScopeNode currentFocus = FocusScope.of(context);
+                        if (!currentFocus.hasPrimaryFocus) {
+                          currentFocus.unfocus();
+                        }
+                      },
+                      decoration: InputDecoration(
+                        filled: true,
+                        fillColor: Colors.white,
+                        prefixIconColor: Colors.grey.shade500,
+                        prefixIcon: const Icon(
+                            FluentSystemIcons.ic_fluent_search_regular),
+                        hintText: 'Search',
+                        hintStyle: TextStyle(color: Colors.grey.shade500),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(15),
+                          borderSide: BorderSide.none,
+                        ),
                       ),
                     ),
                   ),
@@ -102,7 +105,35 @@ class HomeScreen extends StatelessWidget {
                               departureDate: tickets[i].departureDate,
                               ticketNumber: tickets[i].ticketNumber,
                             ),
-                            if (i < tickets.length - 1) const Gap(20)
+                            const Gap(20),
+                          ],
+                        ),
+                    ],
+                  ),
+                ),
+                const Gap(25),
+                ViewAllTitle(
+                  title: 'Hotels',
+                  onViewAllTapped: () {
+                    appState.setCurrentTab(MainTab.search);
+                  },
+                ),
+                const Gap(5),
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children: [
+                      for (var i = 0; i < tickets.length; i++)
+                        Row(
+                          children: [
+                            HotelCard(
+                              width: getSize(context).width * 0.55,
+                              name: 'Hotel Handouri & Tretes',
+                              city: 'London',
+                              nightPrice: 80,
+                              note: 4.7,
+                            ),
+                            const Gap(20),
                           ],
                         ),
                     ],

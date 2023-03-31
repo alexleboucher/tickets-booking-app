@@ -8,37 +8,40 @@ class HomeHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            TitleText(
-              'Good Morning',
-              textStyle: TitleStyle.titleMedium,
-              customization: TextCustomization(
-                color: Colors.grey.shade500,
+    return Padding(
+      padding: const EdgeInsets.only(right: 20),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              TitleText(
+                'Good Morning',
+                textStyle: TitleStyle.titleMedium,
+                customization: TextCustomization(
+                  color: Colors.grey.shade500,
+                ),
+              ),
+              const HeadlineText(
+                'Fast Fly Tickets',
+                textStyle: HeadlineStyle.headlineMedium,
+              ),
+            ],
+          ),
+          Container(
+            height: 70,
+            width: 70,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20),
+              image: const DecorationImage(
+                fit: BoxFit.cover,
+                image: AssetImage('assets/images/logo.png'),
               ),
             ),
-            const HeadlineText(
-              'Fast Fly Tickets',
-              textStyle: HeadlineStyle.headlineMedium,
-            ),
-          ],
-        ),
-        Container(
-          height: 70,
-          width: 70,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
-            image: const DecorationImage(
-              fit: BoxFit.cover,
-              image: AssetImage('assets/images/logo.png'),
-            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
