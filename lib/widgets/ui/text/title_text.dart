@@ -20,11 +20,17 @@ class TitleText extends StatelessWidget {
     super.key,
     this.textStyle = TitleStyle.titleMedium,
     this.customization,
+    this.minLines,
+    this.maxLines,
+    this.overflow,
   });
 
   final String text;
   final TitleStyle textStyle;
   final TextCustomization? customization;
+  final int? minLines;
+  final int? maxLines;
+  final TextOverflow? overflow;
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +40,18 @@ class TitleText extends StatelessWidget {
       style = customization!.customizeStyle(context, style);
     }
 
-    return Text(text, style: style);
+    var formattedText = text;
+    if (minLines != null) {
+      for (var i = 0; i < minLines!; i++) {
+        formattedText += '\n';
+      }
+    }
+
+    return Text(
+      formattedText,
+      style: style,
+      maxLines: maxLines ?? minLines,
+      overflow: overflow,
+    );
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
+import 'package:tickets_booking_app/models/ticket.dart';
 import 'package:tickets_booking_app/utils/duration.dart';
 import 'package:tickets_booking_app/widgets/ui/text/text_customization.dart';
 import 'package:tickets_booking_app/widgets/ui/text/title_text.dart';
@@ -12,23 +13,11 @@ class TicketView extends StatelessWidget {
   const TicketView({
     super.key,
     required this.width,
-    required this.departureCode,
-    required this.departureName,
-    required this.arrivalCode,
-    required this.arrivalName,
-    required this.flightDuration,
-    required this.departureDate,
-    required this.ticketNumber,
+    required this.ticket,
   });
 
   final double width;
-  final String departureCode;
-  final String arrivalCode;
-  final String departureName;
-  final String arrivalName;
-  final Duration flightDuration;
-  final DateTime departureDate;
-  final int ticketNumber;
+  final Ticket ticket;
 
   @override
   Widget build(BuildContext context) {
@@ -52,13 +41,13 @@ class TicketView extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     TitleText(
-                      departureCode,
+                      ticket.departureCode,
                       customization:
                           const TextCustomization(color: Colors.white),
                     ),
                     const Gap(5),
                     TitleText(
-                      departureName,
+                      ticket.departureName,
                       textStyle: TitleStyle.titleSmall,
                       customization:
                           const TextCustomization(color: Colors.white),
@@ -71,7 +60,7 @@ class TicketView extends StatelessWidget {
                     const Gap(5),
                     TitleText(
                       getDurationFormatString(
-                        flightDuration,
+                        ticket.flightDuration,
                         hoursPrefix: 'H ',
                         minutesPrefix: 'M',
                       ),
@@ -86,13 +75,13 @@ class TicketView extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     TitleText(
-                      arrivalCode,
+                      ticket.arrivalCode,
                       customization:
                           const TextCustomization(color: Colors.white),
                     ),
                     const Gap(5),
                     TitleText(
-                      arrivalName,
+                      ticket.arrivalName,
                       textStyle: TitleStyle.titleSmall,
                       customization:
                           const TextCustomization(color: Colors.white),
@@ -128,7 +117,7 @@ class TicketView extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           TitleText(
-                            DateFormat('d MMM').format(departureDate),
+                            DateFormat('d MMM').format(ticket.departureDate),
                             customization:
                                 const TextCustomization(color: Colors.white),
                           ),
@@ -144,7 +133,7 @@ class TicketView extends StatelessWidget {
                       Column(
                         children: [
                           TitleText(
-                            DateFormat('jm').format(departureDate),
+                            DateFormat('jm').format(ticket.departureDate),
                             customization:
                                 const TextCustomization(color: Colors.white),
                           ),
@@ -162,7 +151,7 @@ class TicketView extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           TitleText(
-                            ticketNumber.toString(),
+                            ticket.ticketNumber.toString(),
                             customization:
                                 const TextCustomization(color: Colors.white),
                           ),

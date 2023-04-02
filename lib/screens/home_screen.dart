@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:provider/provider.dart';
 import 'package:tickets_booking_app/main.dart';
+import 'package:tickets_booking_app/models/hotel.dart';
 import 'package:tickets_booking_app/models/ticket.dart';
 import 'package:tickets_booking_app/utils/layout.dart';
 import 'package:tickets_booking_app/widgets/app_scaffold.dart';
@@ -29,6 +30,30 @@ var tickets = [
     flightDuration: const Duration(hours: 8, minutes: 15),
     departureDate: DateTime(2023, 5, 30, 14, 55),
     ticketNumber: 23,
+  ),
+];
+
+var hotels = [
+  const Hotel(
+    name: 'Hotel Handouri & Tretes',
+    city: 'London',
+    nightPrice: 80,
+    note: 4.7,
+    imagePath: 'assets/images/hotel_one.png',
+  ),
+  const Hotel(
+    name: 'Notting Hile Gate Hotel',
+    city: 'London',
+    nightPrice: 65,
+    note: 3.4,
+    imagePath: 'assets/images/hotel_two.png',
+  ),
+  const Hotel(
+    name: 'Pontlands Park',
+    city: 'Chelmsford',
+    nightPrice: 176,
+    note: 4.5,
+    imagePath: 'assets/images/hotel_three.png',
   ),
 ];
 
@@ -91,24 +116,18 @@ class HomeScreen extends StatelessWidget {
                 SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Row(
-                    children: [
-                      for (var i = 0; i < tickets.length; i++)
-                        Row(
-                          children: [
-                            TicketView(
-                              width: getSize(context).width * 0.8,
-                              departureCode: tickets[i].departureCode,
-                              departureName: tickets[i].departureName,
-                              arrivalCode: tickets[i].arrivalCode,
-                              arrivalName: tickets[i].arrivalName,
-                              flightDuration: tickets[i].flightDuration,
-                              departureDate: tickets[i].departureDate,
-                              ticketNumber: tickets[i].ticketNumber,
-                            ),
-                            const Gap(20),
-                          ],
-                        ),
-                    ],
+                    children: tickets
+                        .map(
+                          (ticket) => Row(
+                            children: [
+                              TicketView(
+                                  width: getSize(context).width * 0.8,
+                                  ticket: ticket),
+                              const Gap(20),
+                            ],
+                          ),
+                        )
+                        .toList(),
                   ),
                 ),
                 const Gap(25),
@@ -122,21 +141,19 @@ class HomeScreen extends StatelessWidget {
                 SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Row(
-                    children: [
-                      for (var i = 0; i < tickets.length; i++)
-                        Row(
-                          children: [
-                            HotelCard(
-                              width: getSize(context).width * 0.55,
-                              name: 'Hotel Handouri & Tretes',
-                              city: 'London',
-                              nightPrice: 80,
-                              note: 4.7,
-                            ),
-                            const Gap(20),
-                          ],
-                        ),
-                    ],
+                    children: hotels
+                        .map(
+                          (hotel) => Row(
+                            children: [
+                              HotelCard(
+                                width: getSize(context).width * 0.55,
+                                hotel: hotel,
+                              ),
+                              const Gap(20),
+                            ],
+                          ),
+                        )
+                        .toList(),
                   ),
                 ),
               ],
