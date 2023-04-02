@@ -66,13 +66,13 @@ class HomeScreen extends StatelessWidget {
     return ListView(
       children: [
         Container(
-          padding: const EdgeInsets.only(left: 20, top: 50, bottom: 20),
+          padding: const EdgeInsets.only(top: 50, bottom: 20),
           child: Column(
             children: [
               const HomeHeader(),
               const Gap(20),
               Padding(
-                padding: const EdgeInsets.only(right: 20),
+                padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: GestureDetector(
                   onTap: () {
                     FocusScopeNode currentFocus = FocusScope.of(context);
@@ -104,54 +104,61 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
               const Gap(25),
-              ViewAllTitle(
-                title: 'Upcoming Flights',
-                onViewAllTapped: () {
-                  appState.setCurrentTab(MainTab.tickets);
-                },
+              Padding(
+                padding: const EdgeInsets.only(left: 20),
+                child: ViewAllTitle(
+                  title: 'Upcoming Flights',
+                  onViewAllTapped: () {
+                    appState.setCurrentTab(MainTab.tickets);
+                  },
+                ),
               ),
               const Gap(5),
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Row(
-                  children: tickets
-                      .map(
-                        (ticket) => Row(
-                          children: [
-                            TicketView(
-                                width: getSize(context).width * 0.8,
-                                ticket: ticket),
-                            const Gap(20),
-                          ],
-                        ),
-                      )
-                      .toList(),
+                  children: [
+                    const Gap(20),
+                    for (final ticket in tickets)
+                      Row(
+                        children: [
+                          TicketView(
+                            width: getSize(context).width * 0.8,
+                            ticket: ticket,
+                          ),
+                          const Gap(20),
+                        ],
+                      ),
+                  ],
                 ),
               ),
               const Gap(25),
-              ViewAllTitle(
-                title: 'Hotels',
-                onViewAllTapped: () {
-                  appState.setCurrentTab(MainTab.search);
-                },
+              Padding(
+                padding: const EdgeInsets.only(left: 20),
+                child: ViewAllTitle(
+                  title: 'Hotels',
+                  onViewAllTapped: () {
+                    appState.setCurrentTab(MainTab.search);
+                  },
+                ),
               ),
               const Gap(5),
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Row(
-                  children: hotels
-                      .map(
-                        (hotel) => Row(
-                          children: [
-                            HotelCard(
-                              width: getSize(context).width * 0.55,
-                              hotel: hotel,
-                            ),
-                            const Gap(20),
-                          ],
-                        ),
-                      )
-                      .toList(),
+                  children: [
+                    const Gap(20),
+                    for (final hotel in hotels)
+                      Row(
+                        children: [
+                          HotelCard(
+                            width: getSize(context).width * 0.55,
+                            hotel: hotel,
+                          ),
+                          const Gap(20),
+                        ],
+                      ),
+                  ],
                 ),
               ),
             ],
