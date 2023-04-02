@@ -1,5 +1,23 @@
 import 'package:flutter/material.dart';
 
+TextStyle getDisplayLargeTextStyle(BuildContext context) {
+  return Theme.of(context).textTheme.displayLarge!.copyWith(
+        fontWeight: FontWeight.bold,
+      );
+}
+
+TextStyle getDisplayMediumTextStyle(BuildContext context) {
+  return Theme.of(context).textTheme.displayMedium!.copyWith(
+        fontWeight: FontWeight.bold,
+      );
+}
+
+TextStyle getDisplaySmallTextStyle(BuildContext context) {
+  return Theme.of(context).textTheme.displaySmall!.copyWith(
+        fontWeight: FontWeight.bold,
+      );
+}
+
 TextStyle getHeadlineLargeTextStyle(BuildContext context) {
   return Theme.of(context).textTheme.headlineLarge!.copyWith(
         fontWeight: FontWeight.bold,

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tickets_booking_app/utils/styles/text_styles.dart';
-import 'package:tickets_booking_app/widgets/ui/text/text_customization.dart';
+import 'package:tickets_booking_app/widgets/ui/text/app_text.dart';
 
 enum HeadlineStyle {
   headlineLarge,
@@ -14,26 +14,19 @@ Map<HeadlineStyle, Function(BuildContext context)> textStylesMap = {
   HeadlineStyle.headlineSmall: getHeadlineSmallTextStyle,
 };
 
-class HeadlineText extends StatelessWidget {
+class HeadlineText extends AppText<HeadlineStyle> {
   const HeadlineText(
-    this.text, {
+    super.text, {
     super.key,
-    this.textStyle = HeadlineStyle.headlineMedium,
-    this.customization,
+    super.textStyle = HeadlineStyle.headlineMedium,
+    super.maxLines,
+    super.minLines,
+    super.overflow,
+    super.customization,
   });
 
-  final String text;
-  final HeadlineStyle textStyle;
-  final TextCustomization? customization;
-
   @override
-  Widget build(BuildContext context) {
-    var style = textStylesMap[textStyle]!(context);
-
-    if (customization != null) {
-      style = customization!.customizeStyle(context, style);
-    }
-
-    return Text(text, style: style);
+  TextStyle getTextStyle(HeadlineStyle textStyle, BuildContext context) {
+    return textStylesMap[textStyle]!(context);
   }
 }
