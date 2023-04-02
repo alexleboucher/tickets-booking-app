@@ -5,6 +5,7 @@ import 'package:tickets_booking_app/screens/profile_screen.dart';
 import 'package:tickets_booking_app/screens/search_screen.dart';
 import 'package:tickets_booking_app/screens/tickets_screen.dart';
 import 'package:tickets_booking_app/utils/colors.dart';
+import 'package:tickets_booking_app/widgets/bottom_bar.dart';
 
 void main() {
   runApp(const App());
@@ -50,28 +51,22 @@ class AppState extends ChangeNotifier {
 class MainScreen extends StatelessWidget {
   const MainScreen({super.key});
 
+  static Map<MainTab, Widget> tabOptions = {
+    MainTab.home: const HomeScreen(),
+    MainTab.search: const SearchScreen(),
+    MainTab.tickets: const TicketsScreen(),
+    MainTab.profile: const ProfileScreen(),
+  };
+
   @override
   Widget build(BuildContext context) {
     final appState = context.watch<AppState>();
 
-    Widget screen;
-    switch (appState.currentTab) {
-      case MainTab.home:
-        screen = const HomeScreen();
-        break;
-      case MainTab.search:
-        screen = const SearchScreen();
-        break;
-      case MainTab.tickets:
-        screen = const TicketsScreen();
-        break;
-      case MainTab.profile:
-        screen = const ProfileScreen();
-        break;
-      default:
-        throw UnimplementedError('This screen is not implemented');
-    }
-
-    return screen;
+    return Scaffold(
+      body: SafeArea(
+        child: tabOptions[appState.currentTab]!,
+      ),
+      bottomNavigationBar: const BottomBar(),
+    );
   }
 }
