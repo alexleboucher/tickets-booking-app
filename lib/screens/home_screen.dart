@@ -1,15 +1,12 @@
 import 'package:fluentui_icons/fluentui_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:provider/provider.dart';
-import 'package:tickets_booking_app/main.dart';
 import 'package:tickets_booking_app/models/hotel.dart';
 import 'package:tickets_booking_app/models/ticket.dart';
-import 'package:tickets_booking_app/utils/layout.dart';
 import 'package:tickets_booking_app/widgets/home/home_header.dart';
-import 'package:tickets_booking_app/widgets/ui/hotel_card.dart';
-import 'package:tickets_booking_app/widgets/ui/ticket_view.dart';
-import 'package:tickets_booking_app/widgets/ui/view_all_title.dart';
+import 'package:tickets_booking_app/widgets/home/home_hotels.dart';
+import 'package:tickets_booking_app/widgets/home/home_upcoming_flights.dart';
+import 'package:tickets_booking_app/widgets/ui/input/text_input.dart';
 
 var tickets = [
   Ticket(
@@ -61,8 +58,6 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final appState = context.watch<AppState>();
-
     return ListView(
       children: [
         Container(
@@ -73,88 +68,23 @@ class HomeScreen extends StatelessWidget {
               const Gap(20),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: GestureDetector(
-                  child: TextFormField(
-                    onTapOutside: (event) {
-                      FocusScopeNode currentFocus = FocusScope.of(context);
-                      if (!currentFocus.hasPrimaryFocus) {
-                        currentFocus.unfocus();
-                      }
-                    },
-                    decoration: InputDecoration(
-                      filled: true,
-                      fillColor: Colors.white,
-                      prefixIconColor: Colors.grey.shade500,
-                      prefixIcon: const Icon(
-                          FluentSystemIcons.ic_fluent_search_regular),
-                      hintText: 'Search',
-                      hintStyle: TextStyle(color: Colors.grey.shade500),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(15),
-                        borderSide: BorderSide.none,
-                      ),
-                    ),
-                  ),
+                child: TextInput(
+                  onTapOutside: (event) {
+                    FocusScopeNode currentFocus = FocusScope.of(context);
+                    if (!currentFocus.hasPrimaryFocus) {
+                      currentFocus.unfocus();
+                    }
+                  },
+                  hintText: 'Search',
+                  prefixIcon:
+                      const Icon(FluentSystemIcons.ic_fluent_search_regular),
+                  prefixIconColor: Colors.grey.shade500,
                 ),
               ),
               const Gap(25),
-              Padding(
-                padding: const EdgeInsets.only(left: 20),
-                child: ViewAllTitle(
-                  title: 'Upcoming Flights',
-                  onViewAllTapped: () {
-                    appState.setCurrentTab(MainTab.tickets);
-                  },
-                ),
-              ),
-              const Gap(5),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: [
-                    const Gap(20),
-                    for (final ticket in tickets)
-                      Row(
-                        children: [
-                          TicketView(
-                            width: getSize(context).width * 0.8,
-                            ticket: ticket,
-                          ),
-                          const Gap(20),
-                        ],
-                      ),
-                  ],
-                ),
-              ),
+              HomeUpcomingFlights(tickets: tickets),
               const Gap(25),
-              Padding(
-                padding: const EdgeInsets.only(left: 20),
-                child: ViewAllTitle(
-                  title: 'Hotels',
-                  onViewAllTapped: () {
-                    appState.setCurrentTab(MainTab.search);
-                  },
-                ),
-              ),
-              const Gap(5),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: [
-                    const Gap(20),
-                    for (final hotel in hotels)
-                      Row(
-                        children: [
-                          HotelCard(
-                            width: getSize(context).width * 0.55,
-                            hotel: hotel,
-                          ),
-                          const Gap(20),
-                        ],
-                      ),
-                  ],
-                ),
-              ),
+              HomeHotels(hotels: hotels),
             ],
           ),
         ),
