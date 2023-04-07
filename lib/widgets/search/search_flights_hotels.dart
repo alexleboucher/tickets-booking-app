@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
+import 'package:tickets_booking_app/widgets/search/search_flights_form.dart';
+import 'package:tickets_booking_app/widgets/search/search_hotels_form.dart';
 
 class SearchFlightsHotels extends StatefulWidget {
   const SearchFlightsHotels({super.key});
@@ -30,6 +33,7 @@ class _SearchFlightsHotelsState extends State<SearchFlightsHotels>
         Container(
           clipBehavior: Clip.hardEdge,
           height: 40,
+          margin: const EdgeInsets.symmetric(horizontal: 20),
           decoration: BoxDecoration(
             color: Colors.grey.shade300,
             borderRadius: BorderRadius.circular(
@@ -56,32 +60,19 @@ class _SearchFlightsHotelsState extends State<SearchFlightsHotels>
             ],
           ),
         ),
-        SizedBox(
-          height: 200,
+        const Gap(25),
+        Container(
+          constraints: const BoxConstraints(
+            maxHeight: 300,
+          ),
           child: TabBarView(
             controller: tabController,
             children: const [
               // first tab bar view widget
-              Center(
-                child: Text(
-                  'Airline Tickets',
-                  style: TextStyle(
-                    fontSize: 25,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-              ),
+              SearchFlightsForm(),
 
               // second tab bar view widget
-              Center(
-                child: Text(
-                  'Hotels',
-                  style: TextStyle(
-                    fontSize: 25,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-              ),
+              SearchHotelsForm(),
             ],
           ),
         ),

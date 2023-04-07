@@ -9,11 +9,13 @@ class SearchScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView(
-      padding: const EdgeInsets.only(top: 50, bottom: 20, right: 20, left: 20),
       children: const [
-        DisplayText(
-          'What are\nyou looking for?',
-          textStyle: DisplayStyle.displaySmall,
+        Padding(
+          padding: EdgeInsets.only(top: 50, bottom: 20, right: 20, left: 20),
+          child: DisplayText(
+            'What are\nyou looking for?',
+            textStyle: DisplayStyle.displaySmall,
+          ),
         ),
         Gap(20),
         SearchFlightsHotels(),

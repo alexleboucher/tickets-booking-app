@@ -6,24 +6,37 @@ class TextInput extends StatelessWidget {
     this.prefixIcon,
     this.hintText,
     this.prefixIconColor = Colors.grey,
+    this.focusedPrefixIconColor,
     this.fillColor = Colors.white,
     this.onTapOutside,
+    this.validator,
   });
 
   final Widget? prefixIcon;
   final Color fillColor;
-  final Color? prefixIconColor;
+  final Color prefixIconColor;
+  final Color? focusedPrefixIconColor;
   final String? hintText;
   final void Function(PointerDownEvent)? onTapOutside;
+  final String? Function(String?)? validator;
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return TextFormField(
       onTapOutside: onTapOutside,
+      validator: validator,
+      autovalidateMode: AutovalidateMode.onUserInteraction,
       decoration: InputDecoration(
         filled: true,
         fillColor: fillColor,
-        prefixIconColor: prefixIconColor,
+        prefixIconColor: MaterialStateColor.resolveWith((states) {
+          if (states.contains(MaterialState.focused)) {
+            return focusedPrefixIconColor ?? theme.colorScheme.primary;
+          }
+          return prefixIconColor;
+        }),
         prefixIcon: prefixIcon,
         hintText: hintText,
         hintStyle: TextStyle(color: Colors.grey.shade500),
