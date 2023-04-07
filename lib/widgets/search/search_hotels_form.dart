@@ -43,6 +43,38 @@ class _SearchHotelsFormState extends State<SearchHotelsForm> {
               prefixIconColor: Colors.grey.shade500,
             ),
             const Gap(15),
+            Row(
+              children: [
+                Expanded(
+                  child: TextInput(
+                    onTapOutside: (event) {
+                      FocusScopeNode currentFocus = FocusScope.of(context);
+                      if (!currentFocus.hasPrimaryFocus) {
+                        currentFocus.unfocus();
+                      }
+                    },
+                    hintText: 'Min price',
+                    prefixIcon: const Icon(Icons.attach_money),
+                    prefixIconColor: Colors.grey.shade500,
+                  ),
+                ),
+                const Gap(10),
+                Expanded(
+                  child: TextInput(
+                    onTapOutside: (event) {
+                      FocusScopeNode currentFocus = FocusScope.of(context);
+                      if (!currentFocus.hasPrimaryFocus) {
+                        currentFocus.unfocus();
+                      }
+                    },
+                    hintText: 'Max price',
+                    prefixIcon: const Icon(Icons.attach_money),
+                    prefixIconColor: Colors.grey.shade500,
+                  ),
+                ),
+              ],
+            ),
+            const Gap(15),
             ElevatedButton(
               style: ButtonStyle(
                 backgroundColor:

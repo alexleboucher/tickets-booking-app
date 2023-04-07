@@ -16,8 +16,8 @@ class _SearchFlightsHotelsState extends State<SearchFlightsHotels>
 
   @override
   void initState() {
-    tabController = TabController(length: 2, vsync: this);
     super.initState();
+    tabController = TabController(length: 2, vsync: this);
   }
 
   @override
@@ -29,6 +29,7 @@ class _SearchFlightsHotelsState extends State<SearchFlightsHotels>
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Container(
           clipBehavior: Clip.hardEdge,
@@ -61,10 +62,8 @@ class _SearchFlightsHotelsState extends State<SearchFlightsHotels>
           ),
         ),
         const Gap(25),
-        Container(
-          constraints: const BoxConstraints(
-            maxHeight: 300,
-          ),
+        SizedBox(
+          height: 255,
           child: TabBarView(
             controller: tabController,
             children: const [
