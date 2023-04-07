@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
+import 'package:tickets_booking_app/widgets/search/search_flights_hotels.dart';
 import 'package:tickets_booking_app/widgets/ui/text/display_text.dart';
 
 class SearchScreen extends StatelessWidget {
@@ -6,16 +8,16 @@ class SearchScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return ListView(
       padding: const EdgeInsets.only(top: 50, bottom: 20, right: 20, left: 20),
-      child: ListView(
-        children: const [
-          DisplayText(
-            'What are\nyou looking for?',
-            textStyle: DisplayStyle.displaySmall,
-          ),
-        ],
-      ),
+      children: const [
+        DisplayText(
+          'What are\nyou looking for?',
+          textStyle: DisplayStyle.displaySmall,
+        ),
+        Gap(20),
+        SearchFlightsHotels(),
+      ],
     );
   }
 }
